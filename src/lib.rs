@@ -3,11 +3,12 @@ extern crate wasm_bindgen;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
-pub fn calculate_output(input: String, modulus_input: String) -> Result<String, ()> {
-    let (base, exponent) = extract_base_and_exponent(input)?;
-    let modulus = extract_modulus(modulus_input).unwrap()?;
+pub fn calculate_output(input: String, modulus_input: String) -> Result<String, JsValue> {
+    let (base, exponent) =
+        extract_base_and_exponent(input).map_err(|_| JsValue::from("Input not valid"))?;
+    let modulus = extract_modulus(modulus_input).map_err(|_| JsValue::from("Modulus not valid"))?;
 
-    (base.pow(exponent) % modulus).to_string()
+    Ok((base.pow(exponent) % modulus).to_string())
 }
 
 fn extract_base_and_exponent(input: String) -> Result<(u128, u32), ()> {
