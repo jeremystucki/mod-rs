@@ -1,7 +1,10 @@
 const js = import('./node_modules/mod-rs');
 
 js.then(js => {
-    document.getElementById('input').addEventListener('input', () => {
+    document.getElementById('input').addEventListener('input', inputHandler);
+    document.getElementById('mod').addEventListener('input', inputHandler);
+
+    function inputHandler() {
         let input = document.getElementById('input').value;
         let mod = document.getElementById('mod').value;
 
@@ -10,5 +13,5 @@ js.then(js => {
         } catch (err) {
             document.getElementById('output').textContent = err;
         }
-    });
+    }
 });
