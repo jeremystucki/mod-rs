@@ -1,0 +1,15 @@
+[package]
+name = "mod-rs"
+description = "Playing around with modular arithmetic"
+version = "0.1.0"
+authors = ["Jeremy Stucki <dev@jeremystucki.ch>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
